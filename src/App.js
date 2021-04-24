@@ -1,25 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World
-        </p>
-        <a
-          className="App-link"
-          href="https://miun.se"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          School link
-        </a>
-      </header>
-    </div>
-  );
-}
+class Car extends React.Component{
+    render(){
+      return <h2> Hello this is a {this.props.brand} car! </h2>;
+    }
+  }
 
-export default App;
+  export default Car;
