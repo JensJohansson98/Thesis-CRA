@@ -1,8 +1,5 @@
-import React from 'react';
 import reactDom from 'react-dom';
-import Car from "./app.js"
+import App from "./app.js"
+import TodoList from "./components/TodoList"
 
-
-const myElement = <Car brand="Volvo" />
-
-reactDom.render(myElement, document.getElementById("root"));
+reactDom.render(<TodoList/>, document.getElementById("root"));

@@ -1,9 +1,14 @@
 import React from "react";
+import './App.css';
 
-class Car extends React.Component{
-    render(){
-      return <h2> Hello this is a {this.props.brand} car! </h2>;
-    }
+ function App (){
+    return(
+      <div className ="App">
+        <div className= "App-Header">
+        <h1> Hello React! </h1>
+        </div>
+      </div>
+    );      
   }
 
-  export default Car;
+  export default App;
