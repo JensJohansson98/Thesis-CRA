@@ -1,37 +1,85 @@
-body {
-    background-color: #282c34;
-    color: white;
-    padding: 40px;
-    font-family: Arial;
-    text-align: center;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
-  ul{
-    text-align: center;
+*{
+  font-family: 'Orbitron', sans-serif;
 }
 
-  ul li {
+body {
+  background: #544a7d;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffd452, #544a7d);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffd452, #544a7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  padding: 40px;
+  color:white;
+   }
+
+ .todos ul{
+  text-align: center;
+}
+
+  .todo li {
   list-style: none;
   position: relative;
   padding: 3px 0 2px 25px;
-  background-color: #373a3f;
+  background: #544a7d;
   font-size: large;
   display: block;
+  margin:4px;
+  border-radius: 4px;
+  padding:4px;
+  color:lightgrey;  
 }
 
 .todo button{
-    background-color:#CF0000;
-    color:white;
-    border-radius: 100%;
-    text-align: center;
-    float:right;
+  background-color:#CF0000;
+  color:white;
+  border-radius: 100%;
+  text-align: center;
+  float:right;
+
 }
 
 .todo button:hover{
-    background-color:#7C0000; 
+  background-color:#7C0000;
+  cursor: pointer;
 }
-#checkcomplete{
+
+.todo input[type=checkbox]{
     float:right;
+    
+}
+
+.todoTitle{
+  text-align: center;
+  color:white;
+  background-color:  #fcba03;
+  border-radius: 10px;
+  width: 55%;
+  margin:auto
+}
+
+.todoWrapper{
+  margin:auto;
+  width: 50%;
+  background: #F7971E;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.todoForm{
+  padding:10px;
+}
+.todoForm input[type=text]{
+}
+.todoForm button{
+  background-color: rgb(8, 187, 8);
+  margin:6px;
+}
+.todoForm button:hover{ 
+  background-color: rgb(5, 139, 5);
+  cursor: pointer;
 }
 
 

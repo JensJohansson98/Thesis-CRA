@@ -5,7 +5,6 @@ export default class Todo extends Component{
 
     state = {
         completed: this.props.completed,
-        updatedTaskName: this.props.taskName,
     }
 
     markAsDone = event => {

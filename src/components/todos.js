@@ -9,8 +9,8 @@ export default class Todos extends Component{
 
     state = {
         newtodo:{
-            "taskName":"",
             "id":"",
+            "taskName":"",
             "completed": false
         },
         todos: []
@@ -45,6 +45,11 @@ export default class Todos extends Component{
     handleAddTodo = async (id, event) => {
         event.preventDefault();
 
+        if (!this.state.newtodo.taskName) {
+            alert("Please enter a task");
+            return false;
+          }
+
         try{
             const params = {
                 "id": id,
@@ -61,8 +66,7 @@ export default class Todos extends Component{
 
     }
 
-    handleUpdateTodo = async (id, taskName, completed) => {
-
+    handleUpdateTodo = async(id, taskName, completed) => {
         try{
             const params = {
                 "id": id,
@@ -71,15 +75,16 @@ export default class Todos extends Component{
             };
             await axios.patch(`${config.api.invokeURL}/todos/${id}`, params);
             const todoUpdate = [...this.state.todos].find(todo => todo.id === id);
-            const updatedTodos = [...this.state.todos].filter(todo => todo.id !== id);
             todoUpdate.taskName = taskName;
             todoUpdate.completed = completed;
-            updatedTodos.push(todoUpdate);
+            const updatedTodos = [...this.state.todos];
+            const todoUpdateIndex = this.state.todos.findIndex(todo => todo.id === id);
+            updatedTodos.splice(todoUpdateIndex, 1, todoUpdate);
             this.setState({todos: updatedTodos});
+            
         }catch(err){
             console.log(`Error when updating todo: ${err}`);
         }
-
     }
 
 
@@ -89,27 +94,35 @@ export default class Todos extends Component{
         const Todos = this.state.todos.map((item) =>
         <Todo 
         key={item.id}
-        id = {item.id}
+        id={item.id}
         taskName={item.taskName}
         completed={item.completed}
         handleUpdateTodo={this.handleUpdateTodo}
         handleDeleteTodo={this.handleDeleteTodo}
         />);
+
+        const Completed = this.state.todos.filter(todo => todo.completed === true);
+
         return(
         <Fragment>
-            <div className="todoForm">
-                <form onSubmit={event => this.handleAddTodo(this.state.newtodo.id, event)}>
-                    <input type="text" placeholder="Enter task" value={this.state.newtodo.taskName} onChange={this.onAddTodoNameChange}/>
-                    <button type="submit">Add new todo</button>
-                </form>
+            <div className="todoTitle">
+                    <h1>Your tasks</h1>
             </div>
-            <div className="Todos">
-                <ul>
-                    {Todos}
-                </ul>
+            <div className="todoWrapper">
+                <div className="todoForm">
+                    <form onSubmit={event => this.handleAddTodo(this.state.newtodo.id, event)}>
+                        <input type="text" placeholder="Enter task" value={this.state.newtodo.taskName} onChange={this.onAddTodoNameChange}/>
+                        <button type="submit">Add new todo</button>
+                    </form>
+                </div>
+                <div className="Todos">
+                    <ul>
+                        {Todos}
+                    </ul>
+                    <h3>Completed: {Completed.length}/{this.state.todos.length}</h3>
+                </div>
             </div>
         </Fragment>
-
         );
 
     }
